@@ -9,22 +9,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Characters.cpp">
-      <Filter>Characters</Filter>
-    </ClCompile>
-    <ClCompile Include="Weapons.cpp">
-      <Filter>Items</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Armor.cpp">
-      <Filter>Items</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Characters.h">
       <Filter>Characters</Filter>
     </ClInclude>
-    <ClInclude Include="Weapons.h">
+    <ClInclude Include="Weapon.h">
       <Filter>Items</Filter>
     </ClInclude>
     <ClInclude Include="Armor.h">

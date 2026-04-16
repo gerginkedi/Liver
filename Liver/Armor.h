@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 class Armor {
-protected:
+public:
 	std::string Name;
 	int DefensePoints;
 

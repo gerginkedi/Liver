@@ -1,3 +1,12 @@
+#include "Characters.h"
+#include <iostream>
 int main() {
-    return 0;
+	
+	Stats defaultStat;
+	Liver asd;
+	Liver::MakeLiverReadyToPlay(asd);
+
+
+
+	return 1;
 }

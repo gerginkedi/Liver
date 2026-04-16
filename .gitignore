@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Liver/Characters.cpp
+/Liver/Characters.cpp
+/Liver/Weapons.cpp
+/Liver/Weapons.h

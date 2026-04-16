@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="Liver/Liver.vcxproj" />
+  <Project Path="Liver/Liver.vcxproj" Id="768bf63e-0b52-4964-a578-a2b28ebef64e" />
 </Solution>
