@@ -7,6 +7,15 @@
     <Filter Include="Items">
       <UniqueIdentifier>{c1b2bccc-7ee5-4938-9791-2997c8732ac1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{194ee229-09f2-4265-8bca-121bbe56caf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{ed51f28e-dc84-4b6b-81bd-733e61419a60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Consts">
+      <UniqueIdentifier>{d4ef4981-f45e-4d17-9c67-887113b36640}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -20,6 +29,12 @@
     </ClInclude>
     <ClInclude Include="Armor.h">
       <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
