@@ -134,6 +134,8 @@
   <ItemGroup>
     <ClInclude Include="Armor.h" />
     <ClInclude Include="Characters.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="UIManager.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
