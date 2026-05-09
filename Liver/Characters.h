@@ -251,7 +251,8 @@ public:
 	};
 
 	int id;
-	int level;
+	int level = 1;         // Varsayılan level 1
+	int exp = 0;           // Deneyim puanı
 	std::string race;
 	std::string name;
 

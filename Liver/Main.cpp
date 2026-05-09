@@ -1,12 +1,17 @@
 #include "Characters.h"
 #include <iostream>
-int main() {
-	
-	Stats defaultStat;
-	Liver asd;
-	Liver::MakeLiverReadyToPlay(asd);
+#include "GameManager.h"
+#include <ctime> // time icin gerekli
+#include <cstdlib> // srand icin gerekli
 
+int main()
+{
+    // Rastgele sayı üretecinin başlangıç noktasını (seed) o anki saate göre ayarla
+    srand(static_cast<unsigned int>(time(0)));
 
+    GameManager game;
 
-	return 1;
+    game.startGame();
+
+    return 0;
 }
