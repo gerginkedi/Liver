@@ -1,0 +1,14 @@
+name=SiyahiBirAdam
+id=-858993460
+level=1
+exp=0
+hitPoints=54
+will=15
+strength=16
+dexterity=12
+constitution=12
+charisma=12
+weaponName=Iron Sword
+weaponAttack=7
+armorName=Leather Armor
+armorDefense=4

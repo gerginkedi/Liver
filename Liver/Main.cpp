@@ -9,9 +9,7 @@ int main()
     // Rastgele sayı üretecinin başlangıç noktasını (seed) o anki saate göre ayarla
     srand(static_cast<unsigned int>(time(0)));
 
-    GameManager game;
-
-    game.startGame();
-
+    GameManager gm;
+    gm.startGame();
     return 0;
 }

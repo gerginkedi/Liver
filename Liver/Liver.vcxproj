@@ -131,11 +131,13 @@
   <ItemGroup>
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SaveManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Armor.h" />
     <ClInclude Include="Characters.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="SaveManager.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>

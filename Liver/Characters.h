@@ -1,265 +1,150 @@
 #pragma once
 
 #include <string>
-#include "Weapon.h"
-#include "Armor.h"
 #include <iostream>
 #include <cstdlib>
+#include "Weapon.h"
+#include "Armor.h"
 
-struct Stats
-{
-	int will = 8;
-	int strength = 8;
-	int dexterity = 8;
-	int constitution = 8;
-	int charisma = 8;
+struct Stats {
+    int will = 8;
+    int strength = 8;
+    int dexterity = 8;
+    int constitution = 8;
+    int charisma = 8;
 };
-
 
 class Liver {
+private:
+    Stats stats;
+
+    static const int STAT_MIN = 0;
+    static const int STAT_MAX = 16;   // Karakter oluşturma üst sınırı
+    static const int BUY_POINTS = 27;
+
 public:
-	static Liver MakeLiverReadyToPlay(Liver notReadyLiver) {
-		int buyPoints = 27;
-		std::string input;
-		std::string input2;
+    Liver() = default;
+    virtual ~Liver() = default;
 
-		while (buyPoints >= 0)
-		{
+    // --- Getters ---
+    int getWill()         const { return stats.will; }
+    int getStrength()     const { return stats.strength; }
+    int getDexterity()    const { return stats.dexterity; }
+    int getConstitution() const { return stats.constitution; }
+    int getCharisma()     const { return stats.charisma; }
 
-			std::cout << "You have " << buyPoints << " points to spend on your stats." << std::endl;
-			std::cout << "1. Will: " << notReadyLiver.stats.will << std::endl;
-			std::cout << "2. Strength: " << notReadyLiver.stats.strength << std::endl;
-			std::cout << "3. Dexterity: " << notReadyLiver.stats.dexterity << std::endl;
-			std::cout << "4. Constitution: " << notReadyLiver.stats.constitution << std::endl;
-			std::cout << "5. Charisma: " << notReadyLiver.stats.charisma << std::endl;
-			std::cout << "6. Confirm and Finish" << std::endl;
-			std::cout << "------------------------------------------------" << std::endl;
-			std::cout << "select a stat to increase --> ";
-			std::cin >> input;
+    // --- Setters ---
+    void setWill(int v) { if (v >= 0) stats.will = v; }
+    void setStrength(int v) { if (v >= 0) stats.strength = v; }
+    void setDexterity(int v) { if (v >= 0) stats.dexterity = v; }
+    void setConstitution(int v) { if (v >= 0) stats.constitution = v; }
+    void setCharisma(int v) { if (v >= 0) stats.charisma = v; }
 
-			while (input != "1" && input != "2" && input != "3" && input != "4" && input != "5" && input != "6") {
-				std::cout << "invalid input" << std::endl;
-				std::cout << "You have " << buyPoints << " points to spend on your stats." << std::endl;
-				std::cout << "1. Will: " << notReadyLiver.stats.will << std::endl;
-				std::cout << "2. Strength: " << notReadyLiver.stats.strength << std::endl;
-				std::cout << "3. Dexterity: " << notReadyLiver.stats.dexterity << std::endl;
-				std::cout << "4. Constitution: " << notReadyLiver.stats.constitution << std::endl;
-				std::cout << "5. Charisma: " << notReadyLiver.stats.charisma << std::endl;
-				std::cout << "6. Confirm and Finish" << std::endl;
-				std::cout << "------------------------------------------------" << std::endl;
-				std::cout << "select a stat to increase --> ";
-				std::cin >> input;
-			}
-			if (input == "6") {
-				std::cout << "Character creation finished! Your stats have been confirmed." << std::endl;
-				break;
-			}
-			else if (input == "1") {
-				std::cout << "will selected, current will: " << notReadyLiver.stats.will << std::endl;
-				std::cout << "type 1 to increase +1 type 2 to decrease -1. to quit 3 --> ";
-				std::cin >> input2;
-				while (input2 != "1" && input2 != "2" && input2 != "3")
-				{
-					std::cout << "invalid input,type 1 to increase +1 type 2 to decrease -1 to quit 3 --> ";
-					std::cin >> input2;
-				}
-				while (input2 != "3")
-				{
-					if (input2 == "1") {
-						if (buyPoints > 0) {
-							notReadyLiver.stats.will++;
-							buyPoints--;
-							std::cout << "will increased to: " << notReadyLiver.stats.will << std::endl;
-						}
-						else {
-							std::cout << "Not enough buyPoints to increase this stat." << std::endl;
-						}
-					}
+    int RollD20() { return rand() % 20 + 1; }
 
-					if (input2 == "2") {
-						if (notReadyLiver.stats.will > 0) {
-							notReadyLiver.stats.will--;
-							buyPoints++;
-							std::cout << "will decreased to: " << notReadyLiver.stats.will << std::endl;
-						}
-						else {
-							std::cout << "This stat cannot be decreased any further." << std::endl;
-						}
-					}
-					std::cout << "Remaining buyPoints: " << buyPoints << std::endl;
-					std::cout << "type 1 to increase +1 type 2 to decrease -1. to quit 3 --> ";
-					std::cin >> input2;
-				}
-			}
-			else if (input == "2") {
-				std::cout << "strength selected, current strength: " << notReadyLiver.stats.strength << std::endl;
-				std::cout << "type 1 to increase +1 type 2 to decrease -1. to quit 3 --> ";
-				std::cin >> input2;
-				while (input2 != "1" && input2 != "2" && input2 != "3")
-				{
-					std::cout << "invalid input,type 1 to increase +1 type 2 to decrease -1 to quit 3 --> ";
-					std::cin >> input2;
-				}
-				while (input2 != "3")
-				{
-					if (input2 == "1") {
-						if (buyPoints > 0) {
-							notReadyLiver.stats.strength++;
-							buyPoints--;
-							std::cout << "strength increased to: " << notReadyLiver.stats.strength << std::endl;
-						}
-						else {
-							std::cout << "Not enough buyPoints to increase this stat." << std::endl;
-						}
-					}
+    // ============================================================
+    //  KARAKTER OLUŞTURMA
+    // ============================================================
+    static Liver MakeLiverReadyToPlay(Liver liver) {
+        int buyPoints = BUY_POINTS;
+        std::string input;
 
-					if (input2 == "2") {
-						if (notReadyLiver.stats.strength > 0) {
-							notReadyLiver.stats.strength--;
-							buyPoints++;
-							std::cout << "strength decreased to: " << notReadyLiver.stats.strength << std::endl;
-						}
-						else {
-							std::cout << "This stat cannot be decreased any further." << std::endl;
-						}
-					}
-					std::cout << "Remaining buyPoints: " << buyPoints << std::endl;
-					std::cout << "type 1 to increase +1 type 2 to decrease -1. to quit 3 --> ";
-					std::cin >> input2;
-				}
-			}
-			else if (input == "3") {
-				std::cout << "dexterity selected, current dexterity: " << notReadyLiver.stats.dexterity << std::endl;
-				std::cout << "type 1 to increase +1 type 2 to decrease -1. to quit 3 --> ";
-				std::cin >> input2;
-				while (input2 != "1" && input2 != "2" && input2 != "3")
-				{
-					std::cout << "invalid input,type 1 to increase +1 type 2 to decrease -1 to quit 3 --> ";
-					std::cin >> input2;
-				}
-				while (input2 != "3")
-				{
-					if (input2 == "1") {
-						if (buyPoints > 0) {
-							notReadyLiver.stats.dexterity++;
-							buyPoints--;
-							std::cout << "dexterity increased to: " << notReadyLiver.stats.dexterity << std::endl;
-						}
-						else {
-							std::cout << "Not enough buyPoints to increase this stat." << std::endl;
-						}
-					}
+        while (true) {
+            // --- Menü ---
+            std::cout << "\n========== STAT ALLOCATION ==========" << std::endl;
+            std::cout << "Buy Points: " << buyPoints
+                << "  |  Max per stat: " << STAT_MAX << std::endl;
+            std::cout << "--------------------------------------" << std::endl;
+            std::cout << "1. Will:         " << liver.getWill() << std::endl;
+            std::cout << "2. Strength:     " << liver.getStrength() << std::endl;
+            std::cout << "3. Dexterity:    " << liver.getDexterity() << std::endl;
+            std::cout << "4. Constitution: " << liver.getConstitution() << std::endl;
+            std::cout << "5. Charisma:     " << liver.getCharisma() << std::endl;
+            std::cout << "6. Confirm and Finish" << std::endl;
+            std::cout << "======================================" << std::endl;
+            std::cout << "Select a stat --> ";
+            std::cin >> input;
 
-					if (input2 == "2") {
-						if (notReadyLiver.stats.dexterity > 0) {
-							notReadyLiver.stats.dexterity--;
-							buyPoints++;
-							std::cout << "dexterity decreased to: " << notReadyLiver.stats.dexterity << std::endl;
-						}
-						else {
-							std::cout << "This stat cannot be decreased any further." << std::endl;
-						}
-					}
-					std::cout << "Remaining buyPoints: " << buyPoints << std::endl;
-					std::cout << "type 1 to increase +1 type 2 to decrease -1. to quit 3 --> ";
-					std::cin >> input2;
-				}
-			}
-			else if (input == "4") {
-				std::cout << "constitution selected, current constitution: " << notReadyLiver.stats.constitution << std::endl;
-				std::cout << "type 1 to increase +1 type 2 to decrease -1. to quit 3 --> ";
-				std::cin >> input2;
-				while (input2 != "1" && input2 != "2" && input2 != "3")
-				{
-					std::cout << "invalid input,type 1 to increase +1 type 2 to decrease -1 to quit 3 --> ";
-					std::cin >> input2;
-				}
-				while (input2 != "3")
-				{
-					if (input2 == "1") {
-						if (buyPoints > 0) {
-							notReadyLiver.stats.constitution++;
-							buyPoints--;
-							std::cout << "constitution increased to: " << notReadyLiver.stats.constitution << std::endl;
-						}
-						else {
-							std::cout << "Not enough buyPoints to increase this stat." << std::endl;
-						}
-					}
+            while (input != "1" && input != "2" && input != "3" &&
+                input != "4" && input != "5" && input != "6") {
+                std::cout << "Invalid input. Enter 1-6 --> ";
+                std::cin >> input;
+            }
 
-					if (input2 == "2") {
-						if (notReadyLiver.stats.constitution > 0) {
-							notReadyLiver.stats.constitution--;
-							buyPoints++;
-							std::cout << "constitution decreased to: " << notReadyLiver.stats.constitution << std::endl;
-						}
-						else {
-							std::cout << "This stat cannot be decreased any further." << std::endl;
-						}
-					}
-					std::cout << "Remaining buyPoints: " << buyPoints << std::endl;
-					std::cout << "type 1 to increase +1 type 2 to decrease -1. to quit 3 --> ";
-					std::cin >> input2;
-				}
-			}
-			else if (input == "5") {
-				std::cout << "charisma selected, current charisma: " << notReadyLiver.stats.charisma << std::endl;
-				std::cout << "type 1 to increase +1 type 2 to decrease -1. to quit 3 --> ";
-				std::cin >> input2;
-				while (input2 != "1" && input2 != "2" && input2 != "3")
-				{
-					std::cout << "invalid input,type 1 to increase +1 type 2 to decrease -1 to quit 3 --> ";
-					std::cin >> input2;
-				}
-				while (input2 != "3")
-				{
-					if (input2 == "1") {
-						if (buyPoints > 0) {
-							notReadyLiver.stats.charisma++;
-							buyPoints--;
-							std::cout << "charisma increased to: " << notReadyLiver.stats.charisma << std::endl;
-						}
-						else {
-							std::cout << "Not enough buyPoints to increase this stat." << std::endl;
-						}
-					}
+            if (input == "6") {
+                std::cout << "Stats confirmed!" << std::endl;
+                break;
+            }
 
-					if (input2 == "2") {
-						if (notReadyLiver.stats.charisma > 0) {
-							notReadyLiver.stats.charisma--;
-							buyPoints++;
-							std::cout << "charisma decreased to: " << notReadyLiver.stats.charisma << std::endl;
-						}
-						else {
-							std::cout << "This stat cannot be decreased any further." << std::endl;
-						}
-					}
-					std::cout << "Remaining buyPoints: " << buyPoints << std::endl;
-					std::cout << "type 1 to increase +1 type 2 to decrease -1. to quit 3 --> ";
-					std::cin >> input2;
-				}
-			}
-		}
-		return notReadyLiver;
+            // Seçilen statın mevcut değerini ve adını al
+            int         current = 0;
+            std::string statName;
 
-	};
-	Liver() = default;
-	int hitPoints;
-	int RollD20() {
-		return rand() % 20 + 1;
+            if (input == "1") { current = liver.getWill();         statName = "Will"; }
+            else if (input == "2") { current = liver.getStrength();     statName = "Strength"; }
+            else if (input == "3") { current = liver.getDexterity();    statName = "Dexterity"; }
+            else if (input == "4") { current = liver.getConstitution(); statName = "Constitution"; }
+            else if (input == "5") { current = liver.getCharisma();     statName = "Charisma"; }
 
-	};
+            // Kullanıcıya mevcut durum ve sınırları göster
+            std::cout << "\n" << statName << ": " << current
+                << "  (min: " << STAT_MIN
+                << "  max: " << STAT_MAX
+                << "  buy points: " << buyPoints << ")" << std::endl;
+            std::cout << "Enter amount to add/remove (e.g. 3 or -2), 0 to cancel --> ";
 
-	int id;
-	int level = 1;         // Varsayılan level 1
-	int exp = 0;           // Deneyim puanı
-	std::string race;
-	std::string name;
+            int amount = 0;
+            std::cin >> amount;
 
-	Stats stats;
-	Weapons weapon;
-	Armor armor;
-public:
-	virtual ~Liver() {};
+            if (amount == 0) continue;
+
+            int newValue = current + amount;
+
+            // --- Doğrulama ---
+            if (amount > 0) {
+                if (amount > buyPoints) {
+                    std::cout << "Not enough buy points. You only have "
+                        << buyPoints << "." << std::endl;
+                    continue;
+                }
+                if (newValue > STAT_MAX) {
+                    std::cout << statName << " cannot exceed " << STAT_MAX
+                        << ". Maximum you can add: "
+                        << STAT_MAX - current << "." << std::endl;
+                    continue;
+                }
+            }
+            else {
+                if (newValue < STAT_MIN) {
+                    std::cout << statName << " cannot go below " << STAT_MIN
+                        << ". Maximum you can remove: "
+                        << current - STAT_MIN << "." << std::endl;
+                    continue;
+                }
+            }
+
+            // --- Uygula ---
+            if (input == "1") liver.setWill(newValue);
+            else if (input == "2") liver.setStrength(newValue);
+            else if (input == "3") liver.setDexterity(newValue);
+            else if (input == "4") liver.setConstitution(newValue);
+            else if (input == "5") liver.setCharisma(newValue);
+
+            buyPoints -= amount;  // negatif amount buyPoints'i iade eder
+
+            std::cout << statName << " set to " << newValue
+                << "  |  Buy points remaining: " << buyPoints << std::endl;
+        }
+
+        return liver;
+    }
+
+    int         id;
+    int         level = 1;
+    int         exp = 0;
+    int         hitPoints = 0;
+    std::string name;
+    std::string race;
+    Weapons     weapon;
+    Armor       armor;
 };
-
