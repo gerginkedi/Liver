@@ -16,11 +16,17 @@
     <Filter Include="Consts">
       <UniqueIdentifier>{d4ef4981-f45e-4d17-9c67-887113b36640}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SaveSystem">
+      <UniqueIdentifier>{d3adb36c-c52a-4477-b8c3-463b2dbb55ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="GameManager.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveManager.cpp">
+      <Filter>SaveSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -38,6 +44,9 @@
     </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveManager.h">
+      <Filter>SaveSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
