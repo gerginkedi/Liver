@@ -16,11 +16,21 @@ void GameManager::InitEnemies() {
     caveEnemies = {
         { "Bat",      1, 3, 15, 3, 0 },
         { "Skeleton", 1, 5, 25, 5, 2 },
+		{ "Giant Spider", 2, 6, 35, 7, 1 },
+		{ "Cave Troll", 4, 7, 60, 10, 5 },
+        { "Dark Mage", 5, 8, 40, 8, 3 },
+		{ "Mimic", 3, 6, 30, 3, 4 }
+
     };
 
     forestEnemies = {
-        { "Goblin", 1, 4, 20, 4, 1 },
-        { "Wolf",   1, 5, 30, 6, 0 },
+        { "Goblin",         1, 4, 20, 4, 1 },
+        { "Wolf",           1, 5, 30, 6, 0 },
+        {"Giant Snake",     2, 5, 25, 5, 1 },
+        { "Troll",          3, 6, 50, 8, 3 },
+		{ "Bandit",         2, 5, 35, 7, 2 },
+        { "Ent",            4, 7, 70, 9, 5 },
+		{ "Forest Witch",   5, 8, 45, 10, 4 },
     };
 }
 
@@ -280,6 +290,8 @@ void GameManager::Battle(Liver& player, Liver& enemy) {
         int playerRoll = player.RollD20();
         std::cout << "You rolled a " << playerRoll << "!" << std::endl;
 
+
+        // Critical fail or hit check
         if (playerRoll < 3)  std::cout << "Oof! A terrible strike." << std::endl;
         else if (playerRoll > 18) std::cout << "Incredible! A critical blow!" << std::endl;
 
