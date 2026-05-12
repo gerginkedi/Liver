@@ -1,8 +1,8 @@
 name=SiyahiBirAdam
 id=-858993460
-level=1
-exp=0
-hitPoints=54
+level=3
+exp=210
+hitPoints=19
 will=15
 strength=16
 dexterity=12

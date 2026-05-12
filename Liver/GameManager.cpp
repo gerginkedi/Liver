@@ -20,26 +20,22 @@ void GameManager::InitEnemies() {
 
     // --- Mağara Düşmanları ---
     caveEnemies = {
-        // Erken oyun
-        { "Bat",          1, 3,  15,  3, 0 },
-        { "Skeleton",     1, 5,  25,  5, 2 },
-        // Orta oyun — zehir benzeri yüksek saldırı, düşük savunma
-        { "Giant Spider", 2, 6,  35,  7, 1 },
-        // Geç orta oyun — aldatıcı, yüksek HP ve savunma
-        { "Mimic",        4, 8,  45,  9, 3 },
-        // Geç oyun — düşük HP ama hasar çok yüksek
-        { "Dark Mage",    6, 10, 40, 12, 2 },
+        { "Bat",      1, 3, 15, 3, 0 },
+        { "Skeleton", 1, 5, 25, 5, 2 },
+		{ "Orc",      2, 6, 35, 7, 3 },
+		{"Cave Troll", 4, 8, 50, 10, 5 },
+        {"Giant Spider", 3, 7, 40, 8, 4 },
+        {"Dark Mage", 6, 10, 40, 12, 2 }
     };
 
     // --- Orman Düşmanları ---
     forestEnemies = {
-        // Erken oyun
-        { "Goblin",        1, 4,  20,  4, 1 },
-        { "Wolf",          1, 5,  30,  6, 0 },
-        // Orta oyun — tank, çok yüksek HP ve savunma, orta saldırı
-        { "Troll",         3, 7,  60,  8, 4 },
-        // Geç oyun — kırılgan ama çok saldırgan
-        { "Forest Witch",  5, 9,  35, 11, 1 },
+        { "Goblin", 1, 4, 20, 4, 1 },
+        { "Wolf",   1, 5, 30, 6, 0 },
+        {"Bandit", 2, 6, 35, 7, 2 },
+        { "Ent",    4, 8, 60, 9, 5 },
+        { "Troll",  5, 9, 45, 10, 3 },
+        { "Forest Witch", 6, 10, 40, 12, 2 }
     };
 }
 
@@ -285,7 +281,7 @@ void GameManager::Battle(Liver& player, Liver& enemy) {
         int playerRoll = player.RollD20();
         std::cout << "You rolled a " << playerRoll << "!" << std::endl;
 
-        if      (playerRoll < 3)  std::cout << "Oof! A terrible strike."     << std::endl;
+        if (playerRoll < 3)  std::cout << "Oof! A terrible strike." << std::endl;
         else if (playerRoll > 18) std::cout << "Incredible! A critical blow!" << std::endl;
 
         int playerDamage = playerRoll + player.weapon.AttackPoints;
