@@ -22,12 +22,20 @@ void GameManager::InitEnemies() {
     caveEnemies = {
         { "Bat",      1, 3, 15, 3, 0 },
         { "Skeleton", 1, 5, 25, 5, 2 },
+		{ "Orc",      2, 6, 35, 7, 3 },
+		{"Cave Troll", 4, 8, 50, 10, 5 },
+        {"Giant Spider", 3, 7, 40, 8, 4 },
+        {"Dark Mage", 6, 10, 40, 12, 2 }
     };
 
     // --- Orman Düşmanları ---
     forestEnemies = {
         { "Goblin", 1, 4, 20, 4, 1 },
         { "Wolf",   1, 5, 30, 6, 0 },
+        {"Bandit", 2, 6, 35, 7, 2 },
+        { "Ent",    4, 8, 60, 9, 5 },
+        { "Troll",  5, 9, 45, 10, 3 },
+        { "Forest Witch", 6, 10, 40, 12, 2 }
     };
 }
 
